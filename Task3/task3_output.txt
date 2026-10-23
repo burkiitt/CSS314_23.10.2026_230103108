@@ -1,0 +1,14 @@
+OS: Windows-11-10.0.26200-SP0
+CPU model: Intel64 Family 6 Model 154 Stepping 3, GenuineIntel
+Physical worker threads: 8
+Increments per thread: 50000000
+Implementation: Numba native nogil loops in Python threads
+
+Version              Wall Time (ms)    Total Increments
+-------------------  ---------------  -----------------
+Unpadded Shared                2.690          400000000
+Padded/Local                   3.557          400000000
+
+Execution ratio (Unpadded / Padded-Local): 0.756x
+
+Process finished with exit code 0
