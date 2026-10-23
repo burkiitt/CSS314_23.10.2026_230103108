@@ -1,0 +1,7 @@
+PS D:\CSS314_23.10.2026\Task6> java .\task6.java
+Expected final value: 8000000
+Actual final value:   2750119
+Lost updates: 65,62%
+Expected final value: 8000000
+Actual final value:   0
+Lost updates: 100,00%
