@@ -1,0 +1,17 @@
+Student ID: 230103108
+OS: Windows-11-10.0.26200-SP0
+CPU model: Intel64 Family 6 Model 154 Stepping 3, GenuineIntel
+Logical cores: 12
+Array elements: 20000000
+Parallel implementation: worker processes with shared float64 memory
+Amdahl parallel fraction: 0.95
+
+Cores | Wall Time (ms) | Speedup | Amdahl Upper Bound
+------|-----------------|---------|-------------------
+    1 |        1013.807 |   1.000 |             1.000
+    2 |         738.855 |   1.372 |             1.905
+    4 |         656.354 |   1.545 |             3.478
+   12 |        2304.196 |   0.440 |             7.742
+   24 |        4942.558 |   0.205 |            11.163
+
+Process finished with exit code 0
