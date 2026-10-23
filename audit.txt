@@ -1,0 +1,10 @@
+git log --pretty=format:"%h - %cd : %s" --date=iso
+4dceb96 - 2026-10-23 10:58:16 +0500 : feat: task 8 race condition forensics
+825c3e5 - 2026-10-23 10:55:08 +0500 : feat: task 7 race condition forensics
+59a5148 - 2026-10-23 10:51:29 +0500 : feat: task 6 race condition forensics
+e50af32 - 2026-10-23 10:33:49 +0500 : feat: task 5 overhead crossover
+458e56f - 2026-10-23 10:23:34 +0500 : feat: task 4 scheduling under skew
+2daf8fd - 2026-10-23 10:22:44 +0500 : feat: task 4 scheduling under skew
+ec08a36 - 2026-10-23 10:09:53 +0500 : feat: task 3 false sharing profile
+3017eec - 2026-10-23 10:02:39 +0500 : feat: task 2 amdahl scaling
+3adc69a - 2026-10-23 09:51:32 +0500 : task 1 baseline execution
