@@ -1,0 +1,11 @@
+Student ID: 230103108
+OS: Windows-11-10.0.26200-SP0
+CPU model: Intel64 Family 6 Model 154 Stepping 3, GenuineIntel
+Logical cores: 12
+Array elements: 20000000
+Execution mode: serial, single thread
+Mathematical sum: 9998682.141212826595
+Standard deviation: 0.288650732759
+Wall-clock execution time (ms): 3646.959
+
+Process finished with exit code 0
