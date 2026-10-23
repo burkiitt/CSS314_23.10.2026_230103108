@@ -1,0 +1,18 @@
+OS: Windows-11-10.0.26200-SP0
+CPU model: Intel64 Family 6 Model 154 Stepping 3, GenuineIntel
+Logical worker threads: 12
+Operation: y[i] = 1.25 * x[i] + (-0.75)
+
+N          Serial (ms)    Parallel (ms)    Parallel/Serial
+---------  -------------  ---------------  ----------------
+      100          0.003            2.296           918.320
+     1000          0.006            1.415           252.625
+    10000          0.024            1.268            52.376
+   100000          0.147            1.422             9.648
+  1000000          1.473            1.563             1.061
+ 10000000         18.876            6.023             0.319
+
+Crossover range where parallel changes from slower to faster:
+  1000000 < N <= 10000000
+
+Process finished with exit code 0
