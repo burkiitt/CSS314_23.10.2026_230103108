@@ -1,0 +1,24 @@
+OS: Windows-11-10.0.26200-SP0
+CPU model: Intel64 Family 6 Model 154 Stepping 3, GenuineIntel
+Elements per kernel: 30000000
+Worker counts: [1, 2, 12]
+
+Kernel A: Memory-Bound Vector Copy (B[i] = A[i])
+Cores  Wall Time (ms)  Speedup  Efficiency
+-----  ---------------  -------  ----------
+    1           90.309    1.000       1.000
+    2           23.674    3.815       1.907
+   12           20.573    4.390       0.366
+
+Kernel B: Compute-Bound Trigonometric Operation
+Cores  Wall Time (ms)  Speedup  Efficiency
+-----  ---------------  -------  ----------
+    1          340.973    1.000       1.000
+    2          199.128    1.712       0.856
+   12          107.415    3.174       0.265
+
+All-core copy efficiency: 0.366
+All-core compute efficiency: 0.265
+Scaling diagnosis: Kernel B (sin/cos/tan compute) stalled in scaling more than the copy kernel on this run; its all-core scaling efficiency was lower.
+
+Process finished with exit code 0
