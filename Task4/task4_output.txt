@@ -1,0 +1,13 @@
+Items: 1000
+Workers: 4
+Workload: sleep(0.0001 * (i % 20))
+
+Strategy              Chunk  Total Time (ms)  Completion Delta (ms)
+--------------------  -----  ---------------  ---------------------
+Static chunks           250          349.929                 11.615
+Dynamic work queue        1          336.087                  0.016
+
+Static completion range: 0.000 ms to 11.615 ms
+Dynamic completion range: 0.000 ms to 0.016 ms
+
+Process finished with exit code 0

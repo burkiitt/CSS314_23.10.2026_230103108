@@ -12,24 +12,40 @@ INCREMENTS_PER_THREAD = 50_000_000
 
 
 @njit(nogil=True)
-def _increment_unpadded(shared_counts: np.ndarray, index: int, increments: int) -> None:
-    for _ in range(increments):
-        shared_counts[index] += 1
+def _increment_unpadded(
+    shared_counts: np.ndarray,
+    index: int,
+    increments: int,
+    work_items: np.ndarray,
+) -> None:
+    for iteration in range(increments):
+        target = index + int(work_items[iteration])
+        shared_counts[target] += 1
 
 
 @njit(nogil=True)
-def _increment_local(shared_counts: np.ndarray, index: int, increments: int) -> None:
+def _increment_local(
+    shared_counts: np.ndarray,
+    index: int,
+    increments: int,
+    work_items: np.ndarray,
+) -> None:
     local_count = 0
-    for _ in range(increments):
-        local_count += 1
+    for iteration in range(increments):
+        local_count += int(work_items[iteration]) + 1
     shared_counts[index] = local_count
 
 
-def _run_threads(worker, shared_counts: np.ndarray, worker_count: int) -> float:
+def _run_threads(
+    worker,
+    shared_counts: np.ndarray,
+    worker_count: int,
+    work_items: np.ndarray,
+) -> float:
     threads = [
         threading.Thread(
             target=worker,
-            args=(shared_counts, index, INCREMENTS_PER_THREAD),
+            args=(shared_counts, index, INCREMENTS_PER_THREAD, work_items),
             name=f"worker-{index}",
         )
         for index in range(worker_count)
@@ -48,15 +64,17 @@ def main() -> None:
 
     # Compile both native loops before timing the benchmarks.
     warmup = np.zeros(1, dtype=np.int64)
-    _increment_unpadded(warmup, 0, 1)
-    _increment_local(warmup, 0, 1)
+    warmup_items = np.zeros(1, dtype=np.int8)
+    _increment_unpadded(warmup, 0, 1, warmup_items)
+    _increment_local(warmup, 0, 1, warmup_items)
 
     shared_counts = np.zeros(physical_cores, dtype=np.int64)
-    unpadded_ms = _run_threads(_increment_unpadded, shared_counts, physical_cores)
+    work_items = np.zeros(INCREMENTS_PER_THREAD, dtype=np.int8)
+    unpadded_ms = _run_threads(_increment_unpadded, shared_counts, physical_cores, work_items)
     unpadded_total = int(shared_counts.sum())
 
     shared_counts.fill(0)
-    local_ms = _run_threads(_increment_local, shared_counts, physical_cores)
+    local_ms = _run_threads(_increment_local, shared_counts, physical_cores, work_items)
     local_total = int(shared_counts.sum())
 
     ratio = unpadded_ms / local_ms if local_ms else float("inf")
