@@ -1,0 +1,11 @@
+OS: Windows-11-10.0.26200-SP0
+CPU model: Intel64 Family 6 Model 154 Stepping 3, GenuineIntel
+Matrix: 1024 x 1024
+CPU worker threads: 12
+Execution path: CPU fallback (CUDA runtime unavailable)
+
+Geometry       Tile Size  Runtime (ms)  Speedup vs Non-tiled  Max Error
+-------------  ---------  ------------  -------------------  ---------
+Non-tiled      -                50.930                1.000  0.000e+00
+Tiled 16x16    16              175.648                0.290  0.000e+00
+Tiled 64x64    64              154.985                0.329  0.000e+00
