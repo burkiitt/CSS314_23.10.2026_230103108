@@ -1,0 +1,9 @@
+{
+  "student_id": "230103108",
+  "N": 1280,
+  "M": 640,
+  "naive_median_time_ns": 402698200,
+  "interchanged_median_time_ns": 48752900,
+  "speedup": 8.259984534253347,
+  "max_abs_error": 0.0
+}

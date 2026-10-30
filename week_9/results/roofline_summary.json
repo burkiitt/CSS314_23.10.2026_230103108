@@ -1,0 +1,16 @@
+{
+  "student_id": "230103108",
+  "flops_per_stencil_point": 5,
+  "bytes_per_stencil_point": 48,
+  "arithmetic_intensity_flops_per_byte": 0.10416666666666667,
+  "estimated_memory_bandwidth_gb_per_second": 2.6197668286075104,
+  "estimated_peak_flops_per_second": 320000000000,
+  "estimated_memory_roof_flops_per_second": 272892377.97994906,
+  "regime": "memory-bandwidth bound",
+  "cache": {
+    "l1_data_bytes": 49152,
+    "l2_bytes": 2097152,
+    "l3_shared_bytes": 12582912,
+    "line_size_bytes": 64
+  }
+}
