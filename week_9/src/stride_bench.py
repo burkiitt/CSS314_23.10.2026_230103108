@@ -40,11 +40,11 @@ def main():
             total = reduce_stride(data, stride)
             times.append(time.perf_counter_ns() - start)
         median = statistics.median(times)
-        rows.append((stride, touched, int(median), median / touched, total))
+        rows.append((stride, touched, int(median), median / touched, median / touched, total))
 
     output = Path(__file__).resolve().parent.parent / "results" / "stride_results.tsv"
     output.write_text(
-        "stride\telements_touched\tmedian_time_ns\tns_per_element\tchecksum\n"
+        "stride\telements_touched\tmedian_time_ns\tns_per_element\tlatency_ns\tchecksum\n"
         + "\n".join("\t".join(map(str, row)) for row in rows)
         + "\n",
         encoding="utf-8",

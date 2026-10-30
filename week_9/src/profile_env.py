@@ -212,7 +212,8 @@ def profile() -> dict[str, Any]:
             "base_frequency_hz": cpu["base_frequency_hz"],
             "base_frequency_mhz": cpu["base_frequency_mhz"],
             "physical_cores": cpu["physical_cores"], "logical_threads": cpu["logical_threads"],
-            "smt_enabled": cpu["smt_enabled"], "kernel_version": operating_system["kernel_version"]}
+            "smt_enabled": cpu["smt_enabled"], "kernel_version": operating_system["kernel_version"],
+            "cache_line_bytes": cpu["cache"]["line_size_bytes"]}
 
 
 def main() -> None:

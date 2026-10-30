@@ -66,6 +66,8 @@ def main():
         "M": m,
         "naive_median_time_ns": int(naive_time),
         "interchanged_median_time_ns": int(interchanged_time),
+        "naive_time_s": naive_time / 1_000_000_000,
+        "interchanged_time_s": interchanged_time / 1_000_000_000,
         "speedup": naive_time / interchanged_time,
         "max_abs_error": float(np.max(np.abs(baseline - improved))),
     }

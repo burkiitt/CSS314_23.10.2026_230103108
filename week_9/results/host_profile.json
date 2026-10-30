@@ -1,5 +1,5 @@
 {
-  "profiled_at_utc": "2026-10-30T05:06:35.174462+00:00",
+  "profiled_at_utc": "2026-10-30T05:31:27.632351+00:00",
   "cpu": {
     "model_name": "Intel64 Family 6 Model 154 Stepping 3, GenuineIntel",
     "base_frequency_hz": 2500000000,
@@ -42,5 +42,6 @@
   "physical_cores": 8,
   "logical_threads": 12,
   "smt_enabled": true,
-  "kernel_version": "10.0.26200"
+  "kernel_version": "10.0.26200",
+  "cache_line_bytes": 64
 }

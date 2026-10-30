@@ -56,12 +56,14 @@ def main():
     parser.add_argument("--iterations", type=int, default=K)
     args = parser.parse_args()
     result_rows = []
+    all_measurements = {}
     for strategy in ("unpadded", "padded", "privatized"):
         measurements = {}
         for workers in PROCESSES:
             elapsed, total = run(strategy, workers, args.iterations)
             measurements[workers] = elapsed
             result_rows.append([strategy, workers, args.iterations, elapsed, total, "", ""])
+        all_measurements[strategy] = measurements
         first = measurements[1]
         for row in result_rows:
             if row[0] == strategy:
@@ -69,8 +71,16 @@ def main():
                 row[6] = ((row[1] * measurements[row[1]] / first) - 1) / (row[1] - 1) \
                     if row[1] > 1 else ""
 
+    unpadded_first = all_measurements["unpadded"][1]
+    padded_first = all_measurements["padded"][1]
+    for row in result_rows:
+        p = row[1]
+        unpadded_e = ((p * all_measurements["unpadded"][p] / unpadded_first) - 1) / (p - 1) if p > 1 else ""
+        padded_e = ((p * all_measurements["padded"][p] / padded_first) - 1) / (p - 1) if p > 1 else ""
+        row.extend([p, unpadded_e, padded_e])
+
     output = Path(__file__).resolve().parent.parent / "results" / "false_sharing_karp_flatt.tsv"
-    header = "strategy\tprocesses\titerations\ttime_ns\ttotal_count\tspeedup\tkarp_flatt\n"
+    header = "strategy\tprocesses\titerations\ttime_ns\ttotal_count\tspeedup\tkarp_flatt\tp\te_unpadded\te_padded\n"
     output.write_text(header + "\n".join("\t".join(map(str, row)) for row in result_rows) + "\n",
                       encoding="utf-8")
     print(output)

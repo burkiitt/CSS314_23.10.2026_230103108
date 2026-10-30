@@ -96,6 +96,7 @@ def main():
         "flops_per_stencil_point": 5,
         "bytes_per_stencil_point": 48,
         "arithmetic_intensity_flops_per_byte": intensity,
+        "arithmetic_intensity": intensity,
         "estimated_memory_bandwidth_gb_per_second": bandwidth,
         "estimated_peak_flops_per_second": peak_flops,
         "estimated_memory_roof_flops_per_second": memory_roof,
