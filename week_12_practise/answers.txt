@@ -1,0 +1,11 @@
+CPU (64-byte cache line): A cache line contains 8 float64 values (64 bytes). If multiple MPI ranks update different 8-byte counters within the same cache line, they cause false sharing and MESI invalidation traffic.
+
+NVIDIA T4 GPU (32-byte L2 sectors): Each float64 column element is 8 bytes, but consecutive elements are separated by 2,064 bytes (258 × 8). Each read therefore touches a separate 32-byte L2 sector, using only 8 of its 32 bytes.
+- Useful data: 8 bytes.
+- Transferred data: 32 bytes.
+- Efficiency: 25%.
+- Wasted bandwidth: 75%.
+For 256 column elements:
+- Useful data: 2,048 bytes.
+- Sector traffic: 8,192 bytes.
+- Wasted traffic: 6,144 bytes.
